@@ -128,24 +128,23 @@ class TextTransformer(BaseEstimator, TransformerMixin):
         transformed_list = [_imputer(x) for x in X]
         
         vectorized_list = PREPROCESS_VECTORIZED(transformed_list,
-                                                stopwords = self.stopwords
-                                                no_html = self.no_html
-                                                no_unicode = self.no_unicode
-                                                no_bullets = self.no_bullets
-                                                no_urls = self.no_urls
-                                                no_emails = self.no_emails
-                                                no_phones = self.no_phones
-                                                no_numbers = self.no_numbers
-                                                no_currency_symbols = self.no_currency_symbols
-                                                no_punct = self.no_punct
-                                                no_accents = self.no_accents
-                                                no_emojis = self.no_emojis
+                                                stopwords = self.stopwords,
+                                                no_html = self.no_html,
+                                                no_unicode = self.no_unicode,
+                                                no_bullets = self.no_bullets,
+                                                no_urls = self.no_urls,
+                                                no_emails = self.no_emails,
+                                                no_phones = self.no_phones,
+                                                no_numbers = self.no_numbers,
+                                                no_currency_symbols = self.no_currency_symbols,
+                                                no_punct = self.no_punct,
+                                                no_accents = self.no_accents,
+                                                no_emojis = self.no_emojis,
         )
 
         Z = np.array(vectorized_list)
-
-        return Z.reshape((len(X)), -1)
-
+  
+        return list(Z)
 
 features_by_name = {
     "TEXT_TRANSFORMER": lambda: TextTransformer()

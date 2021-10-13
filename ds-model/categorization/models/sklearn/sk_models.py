@@ -91,6 +91,7 @@ class Categorizer(BaseEstimator):
 
     def get_pipeline(self):
         """Retrieve sklearn pipeline."""
+
         pipeline = Pipeline([
             # text_preprocess
             ('normalize', TextTransformer()),
@@ -100,9 +101,9 @@ class Categorizer(BaseEstimator):
             ('class', MODELS_BY_NAME[self.model_name]()),
         ])
 
-        params({'normalize__' + k: val for k, val in self.preprocess_params.items()})
-        params.update = ({'feats__' + k: val for k, val in self.vectorizer_params.items()})
+        params = {'feats__' + k: val for k, val in self.vectorizer_params.items()}
         params.update({'class__' + k: val for k, val in self.model_params.items()})
+        params.update({'normalize__' + k: val for k, val in self.preprocess_params.items()})
         pipeline.set_params(**params)
         self.model = pipeline
 
