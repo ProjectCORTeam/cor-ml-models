@@ -25,7 +25,7 @@ TEST_REQUIRES = [
 ]
 
 setup(
-    name="ds_tools",
+    name="categorization",
     version="0.1.0",
     description="Ticket Categorization",
     author="COR Data Team",
