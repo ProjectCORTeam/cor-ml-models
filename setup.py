@@ -9,6 +9,7 @@ INSTALL_REQUIRES = [
     "textacy==0.11.0",
     "joblib==1.0.1",
     "pandas==1.2.3",
+    "nltk==3.6.7",
     "pickle-mixin"
 
 ]
