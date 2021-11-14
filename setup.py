@@ -10,7 +10,10 @@ INSTALL_REQUIRES = [
     "joblib==1.0.1",
     "pandas==1.2.5",
     "nltk==3.6.5",
-    "pickle-mixin"
+    "pickle-mixin",
+    "click==8.0.3",
+    "boto3==1.20.0",
+    "python-dotenv==0.19.2"
 
 ]
 
@@ -22,7 +25,7 @@ TEST_REQUIRES = [
     "flake8",
     "mypy",
     "pytest-cov",
-    "pytest-mock",
+    "pytest-mock"
 ]
 
 setup(

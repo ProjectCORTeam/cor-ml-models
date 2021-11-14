@@ -6,6 +6,7 @@ import pickle
 from categorization.utils import json_dump_unicode
 from categorization.models.base_model import BaseModel
 from categorization.features.features import TextTransformer
+from sklearn.svm import LinearSVC, SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.dummy import DummyClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
@@ -36,15 +37,30 @@ VECTORIZER_PARAMS = {'ngram_range': (1, 2),
                      }
 
 LOGISTIC = 'logistic'
-LOGISTIC_PARAMS = {'C': 1000,
-                   'penalty': 'l2'}
-DUMMY_CLASSIFIER = 'dummy_classifier'
+SVC = 'svc'
+LINEAR_SVC = 'linearSvc'
+DUMMY_CLASSIFIER = 'DUMMY_CLASSIFIER'
+
+# LOGISTIC_PARAMS = {'C': 1000,
+#                    'penalty': 'l2'}
+# DUMMY_CLASSIFIER = 'dummy_classifier'
+# SVM_CLASSIFIER = 'svc_classifier'
+# SVM_CLASSIFIER_PARAMS = {'C': 10,
+#                         'probability': True}
+
+PARAMS_BY_NAME = {
+    LOGISTIC: {'C': 1000, 'penalty': 'l2'},
+    DUMMY_CLASSIFIER: {},   
+    SVC: {'C': 10, 'probability': True},    
+    LINEAR_SVC: {'max_iter':10000},
+}                        
 
 MODELS_BY_NAME = {
     LOGISTIC: lambda: LogisticRegression(),
-    DUMMY_CLASSIFIER: lambda: DummyClassifier()
+    DUMMY_CLASSIFIER: lambda: DummyClassifier(),
+    SVC: lambda: SVC(),
+    LINEAR_SVC: lambda: LinearSVC()
 }
-
 
 class Categorizer(BaseEstimator):
     """Sklearn classifier model abstraction to predict categories."""
@@ -52,7 +68,6 @@ class Categorizer(BaseEstimator):
     def __init__(self,
                  vectorizer_params=VECTORIZER_PARAMS,
                  model_name=LOGISTIC,
-                 model_params=LOGISTIC_PARAMS,
                  preprocess_params=TEXT_PREPROCESS_PARAMS,
                  last_train_ts=0,
                  model_path=None,):
@@ -76,6 +91,7 @@ class Categorizer(BaseEstimator):
 
         """
         super().__init__()
+
         if model_name in MODELS_BY_NAME.keys():
             self.model_name = model_name
         else:
@@ -84,7 +100,7 @@ class Categorizer(BaseEstimator):
 
         self.preprocess_params = preprocess_params
         self.vectorizer_params = vectorizer_params
-        self.model_params = model_params
+        self.model_params = PARAMS_BY_NAME[self.model_name]
         self.model_path = '' if model_path is None else model_path
         self.last_train_ts = last_train_ts
         self.model = None
