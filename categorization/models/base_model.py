@@ -1,14 +1,11 @@
 """Definition of base embedding model."""
 
 
-class BaseModel():
+class BaseModel:
     """Base model."""
 
     def __init__(self):
-        """Init method.
-
-
-        """
+        """Init method."""
 
     def fit(self):
         """Fit model."""
@@ -21,5 +18,3 @@ class BaseModel():
     def test(self):
         """Evaluate supervised model using file given by path."""
         return NotImplementedError
-
-

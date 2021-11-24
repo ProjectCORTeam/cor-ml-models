@@ -1,31 +1,20 @@
 """Utils."""
 
-import os
-import logging
-import csv
 import codecs
 import json
-import numpy as np
+import logging
 
-from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.model_selection import train_test_split
-from scipy.sparse import csr_matrix
-
-from collections import defaultdict, Counter
-from tqdm import tqdm
-from time import time
-
-
 
 # Set logging config
-log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+log_fmt = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(level=logging.INFO, format=log_fmt)
 logger = logging.getLogger(__name__)
 
 
-def json_dump_unicode(data, file_path, encoding='utf-8'):
+def json_dump_unicode(data, file_path, encoding="utf-8"):
     """Store array in file_path as JSON file."""
-    with codecs.open(file_path, 'w', encoding=encoding) as f:
+    with codecs.open(file_path, "w", encoding=encoding) as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 
@@ -35,7 +24,7 @@ def json_load(file_path):
     Arguments:
         file_path {string} -- JSON file path.
     """
-    with open(file_path, 'r') as jfile:
+    with open(file_path, "r") as jfile:
         data = json.load(jfile)
 
     return data

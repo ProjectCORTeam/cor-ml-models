@@ -1,15 +1,18 @@
-import click
 from shutil import copy
 
-dst = '../../../datasets'
+import click
 
-@click.command(name='grab data')
-@click.option('--path',
-                type=click.Path(writable=True, dir_okay=True),
-                help='Path to csv dataset.')
+dst = "../../../datasets"
+
+
+@click.command(name="grab data")
+@click.option(
+    "--path", type=click.Path(writable=True, dir_okay=True), help="Path to csv dataset."
+)
 def load_dataset(path):
     """Grabs dataset."""
-    copy(path,dst)    
+    copy(path, dst)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     load_dataset()

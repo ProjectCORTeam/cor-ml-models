@@ -2,7 +2,6 @@ from setuptools import find_packages, setup  # type: ignore
 
 # Library dependencies
 INSTALL_REQUIRES = [
-
     "numpy==1.21.1",
     "psutil==5.8.0",
     "scikit-learn==1.0",
@@ -13,8 +12,7 @@ INSTALL_REQUIRES = [
     "pickle-mixin",
     "click==8.0.3",
     "boto3==1.20.0",
-    "python-dotenv==0.19.2"
-
+    "python-dotenv==0.19.2",
 ]
 
 #  Testing dependencies
@@ -25,7 +23,7 @@ TEST_REQUIRES = [
     "flake8",
     "mypy",
     "pytest-cov",
-    "pytest-mock"
+    "pytest-mock",
 ]
 
 setup(

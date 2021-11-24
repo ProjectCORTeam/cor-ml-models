@@ -1,6 +1,5 @@
 """Metrics module to evaluate predictions."""
-from sklearn.metrics import (precision_score, recall_score,
-                             f1_score, matthews_corrcoef)
+from sklearn.metrics import f1_score, matthews_corrcoef, precision_score, recall_score
 
 
 def precision(y_true, y_pred, average=None):
