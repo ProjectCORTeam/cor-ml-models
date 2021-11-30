@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC, LinearSVC
 
-from categorization.features.features import TextTransformer
+#from categorization.features.features import TextTransformer
 from categorization.utils import json_dump_unicode
 
 TEXT_PREPROCESS_PARAMS = {
@@ -50,7 +50,7 @@ DUMMY_CLASSIFIER = "DUMMY_CLASSIFIER"
 PARAMS_BY_NAME = {
     LOGISTIC: {"C": 1000, "penalty": "l2"},
     DUMMY_CLASSIFIER: {},
-    SVC: {"C": 10, "probability": True},
+    SVC_MODEL: {"C": 10, "probability": True},
     LINEAR_SVC: {"max_iter": 10000},
 }
 

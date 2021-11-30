@@ -23,6 +23,8 @@ def train_model(model_name):
 
     df = pd.read_csv(f"{DATA_FOLDER}/{LOCAL_FILE_NAME}")
 
+    df.columns = [col.upper() for col in df.columns]
+
     selected_categories = [
         "Account management",
         "Design",
