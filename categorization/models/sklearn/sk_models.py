@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.svm import SVC, LinearSVC
 
-#from categorization.features.features import TextTransformer
+from categorization.features.features import TextTransformer
 from categorization.utils import json_dump_unicode
 
 TEXT_PREPROCESS_PARAMS = {

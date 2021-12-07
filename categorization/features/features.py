@@ -4,10 +4,8 @@ import pandas as pd
 from nltk.corpus import stopwords
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import FeatureUnion
-#from textacy import preprocessing
 
 STOPWORDS_SET = set(stopwords.words("spanish") + stopwords.words("english"))
-
 
 def remove_stopwords(text):
     """Remove stop words from list of tokenized words."""
@@ -27,9 +25,6 @@ def preprocess_text(
         clean_text = remove_stopwords(clean_text)
 
     return clean_text
-
-
-PREPROCESS_VECTORIZED = np.vectorize(preprocess_text)
 
 
 def _imputer(text):
@@ -71,14 +66,9 @@ class TextTransformer(BaseEstimator, TransformerMixin):
         Args:
             X: array of dictionaries.
         """
-        transformed_list = [_imputer(x) for x in X]
+        transformed_list = [preprocess_text(_imputer(x), self.stopwords) for x in X]
 
-        vectorized_list = PREPROCESS_VECTORIZED(
-            transformed_list,
-            stopwords=self.stopwords
-        )
-
-        Z = np.array(vectorized_list)
+        Z = np.array(transformed_list)
 
         return list(Z)
 
