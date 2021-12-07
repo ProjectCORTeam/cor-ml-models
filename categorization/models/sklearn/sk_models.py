@@ -15,17 +15,6 @@ from categorization.utils import json_dump_unicode
 
 TEXT_PREPROCESS_PARAMS = {
     "stopwords": False,
-    "no_html": True,
-    "no_unicode": True,
-    "no_bullets": True,
-    "no_urls": True,
-    "no_emails": True,
-    "no_phones": True,
-    "no_numbers": True,
-    "no_currency_symbols": True,
-    "no_punct": True,
-    "no_accents": True,
-    "no_emojis": True,
 }
 
 VECTORIZER_PARAMS = {
