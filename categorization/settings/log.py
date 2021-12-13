@@ -5,7 +5,7 @@ from functools import wraps
 from logging.config import dictConfig
 from typing import Any
 
-from categorization.settings.constants import LOCAL_LOG_DIR, LOCAL_LOG_PATH
+from categorization.settings import LOCAL_LOG_DIR, LOCAL_LOG_PATH
 
 if not os.path.exists(LOCAL_LOG_DIR):
     os.makedirs(LOCAL_LOG_DIR)
@@ -38,7 +38,7 @@ LOGGING = {
         },
     },
     "loggers": {
-        "entities_matching": {
+        "Categorization": {
             "handlers": ["console", "log_file"],
             "level": "INFO",
             "propagate": False,
