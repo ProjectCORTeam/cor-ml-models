@@ -53,7 +53,7 @@ class TextTransformer(BaseEstimator, TransformerMixin):
         """
         super(TextTransformer, self).__init__()
 
-        self.stopwords = (stopwords,)
+        self.stopwords = stopwords
 
 
     def fit(self, X, y=None):
