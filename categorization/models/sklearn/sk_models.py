@@ -13,6 +13,8 @@ from sklearn.svm import SVC, LinearSVC
 from categorization.features.features import TextTransformer
 from categorization.utils import json_dump_unicode
 
+from categorization.settings.constants import MODEL_FILE_PATH
+
 TEXT_PREPROCESS_PARAMS = {
     "stopwords": False,
 }
@@ -200,7 +202,7 @@ class Categorizer(BaseEstimator):
             pickle.dump(self, f, protocol=4)
 
     @classmethod
-    def load_model(cls, path: str) -> "Categorizer":
+    def load_model(cls, path: str = MODEL_FILE_PATH) -> "Categorizer":
         with open(path, "rb") as f:
             model = pickle.load(f)  # nosec
         if model.__class__ != cls:

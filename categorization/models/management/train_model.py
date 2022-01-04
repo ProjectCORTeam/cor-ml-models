@@ -10,6 +10,14 @@ from categorization.settings.credentials import (
 )
 from categorization.settings.log import logger
 
+SELECTED_CATEGORIES = [
+    "ACCOUNT MANAGEMENT",
+    "DESIGN",
+    "STRATEGY",
+    "CREATIVE",
+    "SOFTWARE & UX/UI",
+    "SOCIAL MEDIA",
+]
 
 @click.command(name="train_model")
 @click.option(
@@ -25,22 +33,14 @@ def train_model(model_name):
 
     df.columns = [col.upper() for col in df.columns]
 
-    selected_categories = [
-        "Account management",
-        "Design",
-        "Strategy",
-        "Creative",
-        "Software & UX/UI",
-        "Social Media",
-    ]
 
-    df["category_name"] = df["category_name"].apply(
-        lambda x: x if x in selected_categories else "Others"
+    df["CATEGORY_NAME"] = df["CATEGORY_NAME"].apply(
+        lambda x: x.upper() if x.upper() in SELECTED_CATEGORIES else "Others"
     )
 
-    X = df["document_dirty"]
+    X = df["DOCUMENT_DIRTY"]
 
-    y = df["category_name"]
+    y = df["CATEGORY_NAME"]
 
     model = Categorizer(model_name=model_name)
 
@@ -61,6 +61,8 @@ def train_model(model_name):
     )
 
     model.save_model(MODEL_FILE_PATH)
+
+    logger.info(f"Model saved in! {MODEL_FILE_PATH}")
 
 
 if __name__ == "__main__":
