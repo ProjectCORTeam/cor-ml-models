@@ -35,7 +35,7 @@ def train_model(model_name):
 
 
     df["CATEGORY_NAME"] = df["CATEGORY_NAME"].apply(
-        lambda x: x.upper() if x.upper() in SELECTED_CATEGORIES else "Others"
+        lambda x: x.upper() if x.upper() in SELECTED_CATEGORIES else "OTHERS"
     )
 
     X = df["DOCUMENT_DIRTY"]

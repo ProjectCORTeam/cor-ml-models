@@ -41,7 +41,7 @@ DUMMY_CLASSIFIER = "DUMMY_CLASSIFIER"
 PARAMS_BY_NAME = {
     LOGISTIC: {"C": 1000, "penalty": "l2"},
     DUMMY_CLASSIFIER: {},
-    SVC_MODEL: {"C": 10, "probability": True},
+    SVC_MODEL: {"C": 10, "probability": True, "class_weight":"balanced"},
     LINEAR_SVC: {"max_iter": 10000},
 }
 
