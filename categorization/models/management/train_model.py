@@ -2,12 +2,17 @@ import click
 import pandas as pd
 
 from categorization.models.sklearn.sk_models import Categorizer
-from categorization.settings.constants import MODEL_FILE_PATH
+
+from categorization.settings.constants import (
+    MODEL_FILE_PATH    
+)
+
 from categorization.settings.credentials import (
-    DATA_FOLDER,
+    LOCAL_DATA_FOLDER,
     LOCAL_FILE_NAME,
     VALID_MODELS,
 )
+
 from categorization.settings.log import logger
 
 SELECTED_CATEGORIES = [
@@ -29,7 +34,7 @@ SELECTED_CATEGORIES = [
 def train_model(model_name):
     logger.info("Getting data...")
 
-    df = pd.read_csv(f"{DATA_FOLDER}/{LOCAL_FILE_NAME}")
+    df = pd.read_csv(f"{LOCAL_DATA_FOLDER}/{LOCAL_FILE_NAME}")
 
     df.columns = [col.upper() for col in df.columns]
 

@@ -10,6 +10,9 @@ load_dotenv(find_dotenv())
 S3_ACCESS_KEY = os.getenv("S3_ACCESS_KEY", "")
 S3_SECRET_KEY = os.getenv("S3_SECRET_KEY", "")
 S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
-DATA_FOLDER = os.getenv("DATA_FOLDER", "")
+
+LOCAL_DATA_FOLDER = os.getenv("LOCAL_DATA_FOLDER", "")
 LOCAL_FILE_NAME = os.getenv("LOCAL_FILE_NAME", "")
 VALID_MODELS = os.getenv("VALID_MODELS", "")
+
+

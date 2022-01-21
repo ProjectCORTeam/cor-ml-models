@@ -2,7 +2,7 @@ from datetime import datetime
 from pathlib import Path
 
 # base
-BASE_PATH = Path(__file__).resolve().parent.parent  # Root of the package
+BASE_PATH = Path(__file__).resolve().parent  # Root of the package
 
 
 # logger
