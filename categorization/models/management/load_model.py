@@ -34,7 +34,7 @@ def upload_to_s3(model_name):
 
     try:
         # s3.upload_file(MODEL_FILE_PATH, S3_BUCKET_NAME, f"/{S3_OUTPUTS_FOLDER}/{model_name}")
-        s3.upload_file(MODEL_FILE_PATH, S3_BUCKET_NAME, f"/{S3_OUTPUTS_FOLDER}/{model_name}")
+        s3.upload_file(MODEL_FILE_PATH, S3_BUCKET_NAME, f"{S3_OUTPUTS_FOLDER}/{model_name}")
         logger.info("Successful upload to S3 ")
         return True
     except FileNotFoundError:
