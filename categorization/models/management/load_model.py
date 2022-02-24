@@ -5,7 +5,8 @@ from botocore.exceptions import NoCredentialsError
 from categorization.settings.constants import (
     S3_FILE_NAME,
     S3_OUTPUTS_FOLDER,
-    MODEL_FILE_PATH
+    SAVED_MODELS_PATH,
+    S3_FILE_NAME
 )
 
 from categorization.settings.credentials import (
@@ -23,9 +24,16 @@ from categorization.settings.log import logger
     default=S3_FILE_NAME,
     show_default=True,
     type=str,
-    help="Name of the model pkl file to be stored in S3 bucket.",
+    help="Name of the pkl file to be stored in S3.",
 )
-def upload_to_s3(model_name):
+@click.option(
+    "--language",
+    "-l",
+    type=click.Choice(VALID_LANGS.split(",")),
+    help="Language of the model to be stored in S3.",
+)
+
+def upload_to_s3(model_name, language):
     s3 = boto3.client(
         "s3", aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY
     )
@@ -34,7 +42,7 @@ def upload_to_s3(model_name):
 
     try:
         # s3.upload_file(MODEL_FILE_PATH, S3_BUCKET_NAME, f"/{S3_OUTPUTS_FOLDER}/{model_name}")
-        s3.upload_file(MODEL_FILE_PATH, S3_BUCKET_NAME, f"{S3_OUTPUTS_FOLDER}/{model_name}")
+        s3.upload_file(f"{SAVED_MODELS_PATH}/{language}/{S3_FILE_NAME}", S3_BUCKET_NAME, f"{S3_OUTPUTS_FOLDER}/{language}/{model_name}")
         logger.info("Successful upload to S3 ")
         return True
     except FileNotFoundError:

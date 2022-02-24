@@ -16,7 +16,7 @@ from categorization.utils import json_dump_unicode
 from categorization.settings.constants import MODEL_FILE_PATH
 
 TEXT_PREPROCESS_PARAMS = {
-    "stopwords": False,
+    "stopwords": True,
 }
 
 VECTORIZER_PARAMS = {

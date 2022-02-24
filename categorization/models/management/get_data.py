@@ -11,7 +11,8 @@ from categorization.settings.credentials import (
     S3_BUCKET_NAME,
     S3_SECRET_KEY,
     LOCAL_DATA_FOLDER,
-    LOCAL_FILE_NAME
+    LOCAL_DATASET_NAME,
+    VALID_LANGS
 )
 from categorization.settings.log import logger
 
@@ -24,16 +25,24 @@ from categorization.settings.log import logger
     type=str,
     help="Name of the dataset stored in S3 bucket.",
 )
-def download_from_s3(dataset_name):
+@click.option(
+    "--language",
+    "-l",
+    type=click.Choice(VALID_LANGS.split(",")),
+    help="Language of the model to be stored in S3.",
+)
+
+
+def download_from_s3(dataset_name,language):
     s3 = boto3.client(
         "s3", aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY
     )
     try:
-        logger.info("Downloading dataset from S3")
+        logger.info(f"Downloading dataset from S3 Bucket")
         s3.download_file(
             S3_BUCKET_NAME,
-            f"{S3_INPUTS_FOLDER}/{dataset_name}",
-            f"{LOCAL_DATA_FOLDER}/{LOCAL_FILE_NAME}"
+            f"{S3_INPUTS_FOLDER}/{language}/{dataset_name}",
+            f"{LOCAL_DATA_FOLDER}/{language}/{LOCAL_DATASET_NAME}"
         )
 
         logger.info("Successful download from S3")

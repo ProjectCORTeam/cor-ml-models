@@ -4,25 +4,40 @@ import pandas as pd
 from categorization.models.sklearn.sk_models import Categorizer
 
 from categorization.settings.constants import (
-    MODEL_FILE_PATH    
+    SAVED_MODELS_PATH,
+    MODEL_FILE_NAME    
 )
 
 from categorization.settings.credentials import (
     LOCAL_DATA_FOLDER,
-    LOCAL_FILE_NAME,
+    LOCAL_DATASET_NAME,
     VALID_MODELS,
+    VALID_LANGS,
 )
 
 from categorization.settings.log import logger
 
-SELECTED_CATEGORIES = [
+SELECTED_CATEGORIES = {
+    
+    es:[
     "ACCOUNT MANAGEMENT",
     "DESIGN",
     "STRATEGY",
     "CREATIVE",
     "SOFTWARE & UX/UI",
     "SOCIAL MEDIA",
+],
+    en:[
+    "ACCOUNT MANAGEMENT",
+    "DESIGN",
+    "CREATIVE",
+    "SOCIAL MEDIA",
+    "STRATEGY",
+    "BUSINESS INTELLIGENCE",
+    "SOFTWARE & UX/UI",
+    "RESEARCH",
 ]
+}
 
 @click.command(name="train_model")
 @click.option(
@@ -31,16 +46,25 @@ SELECTED_CATEGORIES = [
     type=click.Choice(VALID_MODELS.split(",")),
     help="Name of the model to be trained.",
 )
-def train_model(model_name):
+
+@click.option(
+    "--language",
+    "-l",
+    type=click.Choice(VALID_LANGS.split(",")),
+    help="Language of the model to be trained.",
+)
+
+
+def train_model(model_name, language):
     logger.info("Getting data...")
 
-    df = pd.read_csv(f"{LOCAL_DATA_FOLDER}/{LOCAL_FILE_NAME}")
+    df = pd.read_csv(f"{LOCAL_DATA_FOLDER}/{language}/{LOCAL_DATASET_NAME}")
 
     df.columns = [col.upper() for col in df.columns]
 
 
     df["CATEGORY_NAME"] = df["CATEGORY_NAME"].apply(
-        lambda x: x.upper() if x.upper() in SELECTED_CATEGORIES else "OTHERS"
+        lambda x: x.upper() if x.upper() in SELECTED_CATEGORIES[language] else "OTHERS"
     )
 
     X = df["DOCUMENT_DIRTY"]
@@ -65,9 +89,9 @@ def train_model(model_name):
         f"Prediction Test completed:\ntask = {task}, predicted category = {prediction}"
     )
 
-    model.save_model(MODEL_FILE_PATH)
+    model.save_model(f"{SAVED_MODELS_PATH}/{language}/{MODEL_FILE_NAME}")
 
-    logger.info(f"Model saved in! {MODEL_FILE_PATH}")
+    logger.info(f"Model saved in! {SAVED_MODELS_PATH}/{language}/{MODEL_FILE_NAME}")
 
 
 if __name__ == "__main__":

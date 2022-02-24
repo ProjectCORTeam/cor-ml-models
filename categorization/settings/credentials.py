@@ -12,7 +12,8 @@ S3_SECRET_KEY = os.getenv("S3_SECRET_KEY", "")
 S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
 
 LOCAL_DATA_FOLDER = os.getenv("LOCAL_DATA_FOLDER", "")
-LOCAL_FILE_NAME = os.getenv("LOCAL_FILE_NAME", "")
+LOCAL_DATASET_NAME = os.getenv("LOCAL_DATASET_NAME", "")
 VALID_MODELS = os.getenv("VALID_MODELS", "")
+VALID_LANGS = os.getenv("VALID_LANGS", "")
 
 
