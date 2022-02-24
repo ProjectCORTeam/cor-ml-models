@@ -19,7 +19,7 @@ from categorization.settings.log import logger
 
 SELECTED_CATEGORIES = {
     
-    es:[
+    'es':[
     "ACCOUNT MANAGEMENT",
     "DESIGN",
     "STRATEGY",
@@ -27,7 +27,7 @@ SELECTED_CATEGORIES = {
     "SOFTWARE & UX/UI",
     "SOCIAL MEDIA",
 ],
-    en:[
+    'en':[
     "ACCOUNT MANAGEMENT",
     "DESIGN",
     "CREATIVE",

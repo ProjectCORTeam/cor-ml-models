@@ -13,6 +13,7 @@ from categorization.settings.credentials import (
     S3_ACCESS_KEY,
     S3_BUCKET_NAME,
     S3_SECRET_KEY,
+    VALID_LANGS
 )
 from categorization.settings.log import logger
 
