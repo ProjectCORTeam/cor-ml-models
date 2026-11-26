@@ -2,7 +2,7 @@ from setuptools import find_packages, setup  # type: ignore
 
 # Library dependencies
 INSTALL_REQUIRES = [
-    "numpy==1.21.1",
+    "numpy==1.22.0",
     "psutil==5.8.0",
     "scikit-learn==1.0",
     "textacy==0.11.0",
