@@ -6,7 +6,7 @@ INSTALL_REQUIRES = [
     "psutil==5.8.0",
     "scikit-learn==1.0",
     "textacy==0.11.0",
-    "joblib==1.0.1",
+    "joblib==1.2.0",
     "pandas==1.2.5",
     "nltk==3.6.5",
     "pickle-mixin",
