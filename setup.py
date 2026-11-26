@@ -4,7 +4,7 @@ from setuptools import find_packages, setup  # type: ignore
 INSTALL_REQUIRES = [
     "numpy==1.21.1",
     "psutil==5.8.0",
-    "scikit-learn==1.0",
+    "scikit-learn==1.5.0",
     "textacy==0.11.0",
     "joblib==1.0.1",
     "pandas==1.2.5",
